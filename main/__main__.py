@@ -31,10 +31,14 @@ def msg_judge(update , context):
     for i in judges_id:
         context.bot.send_message(chat_id= i , text=text, parse_mode=ParseMode.HTML)
         
+    update.message.reply_text('msg sent to all judges')
+        
 def msg_cont(update , context):
     text = update.message.text.split()[1]
     for i in registered_id:
         context.bot.send_message(chat_id= i , text=text, parse_mode=ParseMode.HTML)
+        
+    update.message.reply_text('msg sent to all contestant')
     
 
 def credit(update , context):
