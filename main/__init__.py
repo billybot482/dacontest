@@ -1,6 +1,5 @@
 import logging
 import random
-from main import dispatcher 
 from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import CommandHandler, InlineQueryHandler, ConversationHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
