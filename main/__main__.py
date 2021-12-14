@@ -170,6 +170,3 @@ dispatcher.add_handler(START_HANDLER)
 dispatcher.add_handler(JUDGE_HANDLER)
 dispatcher.add_handler(ADD_JUDGE_HANDLER)
 dispatcher.add_handler(CREDIT_HANDLER)
-
-logger = logging.getLogger()
-updater.start_polling(clean=True)
