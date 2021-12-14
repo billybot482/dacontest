@@ -19,12 +19,6 @@ from telegram.ext import (
 
 ONE, TWO, THREE, FOUR, FIVE, *_ = range(100)
 
-updater = Updater(token='5049581891:AAG5WDSHqANKLblA8e4MGT-Ku_WWhL_eugg', use_context=True)
-dispatcher = updater.dispatcher
-
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
-
 owners = [163494588,1223713950,1647842393]
 registered_id = []
 registered_name = []
