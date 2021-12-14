@@ -12,3 +12,5 @@ dispatcher = updater.dispatcher
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
+
+updater.start_polling(drop_pending_updates = True)
