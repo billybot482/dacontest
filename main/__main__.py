@@ -27,18 +27,22 @@ judges_id = []
 
 
 def msg_judge(update , context):
+    id = update.effective_user.id
     text = update.message.text.split()[1]
-    for i in judges_id:
+    if id in owners:
+     for i in judges_id:
         context.bot.send_message(chat_id= i , text=text, parse_mode=ParseMode.HTML)
         
-    update.message.reply_text('msg sent to all judges')
+     update.message.reply_text('msg sent to all judges')
         
 def msg_cont(update , context):
+    id = update.effective_user.id
     text = update.message.text.split()[1]
-    for i in registered_id:
-        context.bot.send_message(chat_id= i , text=text, parse_mode=ParseMode.HTML)
+    if id in owners:
+     for i in registered_id:
+         context.bot.send_message(chat_id= i , text=text, parse_mode=ParseMode.HTML)
         
-    update.message.reply_text('msg sent to all contestant')
+     update.message.reply_text('msg sent to all contestant')
     
 
 def credit(update , context):
