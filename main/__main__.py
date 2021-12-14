@@ -7,6 +7,7 @@ import random
 import json
 from telegram.ext.dispatcher import run_async
 import time
+from main import dispatcher
 from telegram.ext import (
     Updater,
     CommandHandler,
