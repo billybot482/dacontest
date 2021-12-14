@@ -25,6 +25,18 @@ registered_name = []
 judges = []
 judges_id = []
 
+
+def msg_judge(update , context):
+    text = update.message.text.split()[1]
+    for i in judges_id:
+        context.bot.send_message(chat_id= i , text=text, parse_mode=ParseMode.HTML)
+        
+def msg_cont(update , context):
+    text = update.message.text.split()[1]
+    for i in registered_id:
+        context.bot.send_message(chat_id= i , text=text, parse_mode=ParseMode.HTML)
+    
+
 def credit(update , context):
     update.message.reply_text('Credit to <i>@wancoins</i> , my master who created me 😃', parse_mode = ParseMode.HTML)
 
@@ -161,6 +173,8 @@ START_HANDLER = CommandHandler('start', start)
 JUDGE_HANDLER = CommandHandler('judge', judge)
 ADD_JUDGE_HANDLER = CommandHandler('add_judge', add_judge)
 CREDIT_HANDLER = CommandHandler('credit', credit)
+MSG_JUDGE_HANDLER = CommandHandler('msg_judge', msg_judge)
+MSG_CONT_HANDLER = CommandHandler('msg_cont', msg_cont)
 
 dispatcher.add_handler(REG1_HANDLER)
 dispatcher.add_handler(CallbackQueryHandler(register2))
@@ -170,3 +184,5 @@ dispatcher.add_handler(START_HANDLER)
 dispatcher.add_handler(JUDGE_HANDLER)
 dispatcher.add_handler(ADD_JUDGE_HANDLER)
 dispatcher.add_handler(CREDIT_HANDLER)
+dispatcher.add_handler(MSG_CONT_HANDLER)
+dispatcher.add_handler(MSG_JUDGE_HANDLER)
