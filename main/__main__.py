@@ -24,6 +24,53 @@ registered_id = []
 registered_name = []
 judges = []
 judges_id = []
+switches = [1]
+
+def status(update , context):
+    if len(switches)==1:
+       update.message.reply_text('Submission is currently off , wait for submission to open')
+    if len(switches) ==0:
+        update.message.reply_text('Submission is currently open , u can submit via /submit in bot pm')
+
+def switch(update , context):
+    id = update.effective_user.id
+    if id in owners:
+        if len(switches) ==1:
+            update.message.reply_text('The submission is now opened')
+            switches.clear()
+            return status(update , context)
+
+        elif len(switches) ==0:
+            update.message.reply_text('The submission is now closed')
+            switches.append(1)
+            return status(update, context)
+
+
+
+def submit(update , context):
+    cd = context.bot_data
+    id = update.effective_user.id
+    cd['name'] = update.effective_user.name
+    if id in registered_id:
+        if len(switches)==0:
+         update.message.reply_text("Send your art in next message")
+        else:
+            update.message.reply_text('wait for submission to open , check /status')
+    else:
+        update.message.reply_text('You are not eligible')
+
+
+
+def submit2(update , context):
+    cd = context.bot_data
+    id = update.effective_user.id
+    submission = update.message.photo[-1]
+    name = cd['name']
+
+    update.message.reply_text('thank you , we received your submission')
+    context.bot.send_photo(chat_id =  -1001310133382, caption = f'Submitted from user {name}', photo = submission)
+
+
 
 
 def msg_judge(update , context):
@@ -183,6 +230,9 @@ ADD_JUDGE_HANDLER = CommandHandler('add_judge', add_judge)
 CREDIT_HANDLER = CommandHandler('credit', credit)
 MSG_JUDGE_HANDLER = CommandHandler('msg_judge', msg_judge)
 MSG_CONT_HANDLER = CommandHandler('msg_cont', msg_cont)
+STATUS_HANDLER = CommandHandler('status', status)
+SWITCH_HANDLER = CommandHandler('switch', switch)
+SUB1_HANDLER = CommandHandler('submit', submit)
 
 dispatcher.add_handler(REG1_HANDLER)
 dispatcher.add_handler(CallbackQueryHandler(register2))
@@ -192,5 +242,14 @@ dispatcher.add_handler(START_HANDLER)
 dispatcher.add_handler(JUDGE_HANDLER)
 dispatcher.add_handler(ADD_JUDGE_HANDLER)
 dispatcher.add_handler(CREDIT_HANDLER)
+dispatcher.add_handler(MessageHandler(Filters.photo, submit2))
+dispatcher.add_handler(STATUS_HANDLER)
+dispatcher.add_handler(SWITCH_HANDLER)
+dispatcher.add_handler(SUB1_HANDLER)
+
+
+
+
+
 dispatcher.add_handler(MSG_CONT_HANDLER)
 dispatcher.add_handler(MSG_JUDGE_HANDLER)
