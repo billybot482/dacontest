@@ -68,7 +68,7 @@ def submit2(update , context):
     name = cd['name']
 
     update.message.reply_text('thank you , we received your submission')
-    context.bot.send_photo(chat_id =  -1001310133382, caption = f'Submitted from user {name}', photo = submission)
+    context.bot.send_photo(chat_id = -1001287435306, caption = f'Submitted from user {name}', photo = submission)
 
 
 
