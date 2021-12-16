@@ -64,14 +64,13 @@ def submit(update , context):
 def submit2(update , context):
     cd = context.bot_data
     id = update.effective_user.id
-    submission = update.message.photo[-1]
-    name = cd['name']
+    Name = cd['name']
+    if id in registered_id:
+       if len(switches)==0:
+        submission = update.message.photo[-1]
 
-    update.message.reply_text('thank you , we received your submission')
-    context.bot.send_photo(chat_id = -1001287435306, caption = f'Submitted from user {name}', photo = submission)
-
-
-
+        update.message.reply_text('thank you , we received your submission')
+        context.bot.send_photo(chat_id = -1001287435306, caption = f'Submitted from user {name}', photo = submission)
 
 def msg_judge(update , context):
     id = update.effective_user.id
